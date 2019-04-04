@@ -1,0 +1,63 @@
+@startuml
+
+@startuml
+
+class Devise{
+    un_code: const char[4]
+    une_zone: string
+    monnaie: string
+}
+class Cotation{
+    valeur: double
+}
+class Paire_devise{
+    surnom: string
+}
+
+class CoursOHLCV{
+    open_price: Cotation
+    high_price: Cotation
+    low_price: Cotation
+    close_price: Cotation
+    volume: double
+}
+
+class Bougie{
+    forme: string
+}
+
+enum Couleur{
+    Rouge
+    Vert
+}
+
+class Graphique_chandelier{
+
+}
+
+class EvolutionCours{
+}
+
+class Graphique_barre{
+}
+
+Graphique_chandelier *-d->Bougie: *
+
+Bougie o-l->CoursOHLCV:1        représente
+
+EvolutionCours *-d-> CoursOHLCV :*
+
+Graphique_chandelier o-l->EvolutionCours: 1        représente
+Graphique_barre o-r->EvolutionCours: représente           1
+
+Bougie o-d-> Couleur: porte sur\n\n\n1
+
+Paire_devise o-l-> Devise: 1           base
+Paire_devise o-l-> Devise: 1      contrepartie
+
+Cotation o--> Paire_devise:port sur\n\n\n1
+
+CoursOHLCV *--> Cotation: 4
+
+
+@enduml

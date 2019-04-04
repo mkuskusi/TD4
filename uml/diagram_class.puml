@@ -1,0 +1,22 @@
+@startuml
+
+class PaireDevises {
+
+}
+
+class Devise {
+
+}
+
+class DeviseManger{
+
+}
+
+PaireDevises o-l->Devise: n,2
+
+DeviseManager*-->Devise:n,1
+DeviseManager*-->PaireDevises:n,1
+
+
+
+@enduml
