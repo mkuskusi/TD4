@@ -8,7 +8,7 @@ class Devise {
 
 }
 
-class DeviseManger{
+class DeviseManager{
 
 }
 
