@@ -59,7 +59,7 @@ unsigned int EvolutionCours::getNbCours() const {
     return nbCours;
 }
 
-const CoursOHLC& EvolutionCours::getCoursAt(int index) const {
+CoursOHLC& EvolutionCours::getCoursAt(int index) const {
     if(index < 0 || index > nbCours - 1) return nullptr;
     return cours[index];
 }

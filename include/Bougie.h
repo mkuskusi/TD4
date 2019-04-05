@@ -28,6 +28,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Bougie &bougie);
 };
+//std::ostream &operator<<(std::ostream &os, const Bougie &bougie);
 
 
 #endif //TD4_BOUGIE_H

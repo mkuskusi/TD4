@@ -13,6 +13,7 @@ class PaireDevises {
     const Devise* base;
     const Devise* contrepartie;
     std::string surnom;
+
 public:
 
     PaireDevises(const Devise *base, const Devise *contrepartie, const std::string &surnom);
@@ -24,7 +25,6 @@ public:
     const std::string &getSurnom() const;
 
     friend std::ostream &operator<<(std::ostream &os, const PaireDevises &devises);
-
 };
 
 #endif //TD4_PAIREDEVISES_H

@@ -11,6 +11,7 @@ class Devise {
     char code[4];
     std::string monnaie;
     std::string zone;
+
 public:
 
     Devise(char *code, const std::string &monnaie, const std::string &zone);

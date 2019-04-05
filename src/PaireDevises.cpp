@@ -25,3 +25,4 @@ std::ostream &operator<<(std::ostream &os, const PaireDevises &devises) {
     os << "base: " << devises.base << " contrepartie: " << devises.contrepartie << " surnom: " << devises.surnom;
     return os;
 }
+
