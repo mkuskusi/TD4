@@ -3,6 +3,7 @@
 //
 
 #include "../include/Bougie.h"
+double Bougie::seuilToupie=1;
 
 Bougie::Bougie(const CoursOHLC &cours) : cours(cours) {}
 
@@ -14,8 +15,8 @@ Couleur Bougie::getCouleur() const {
     return couleur;
 }
 
-void Bougie::setSeuilToupie(double seuilToupie) {
-    Bougie::seuilToupie = seuilToupie;
+void Bougie::setSeuilToupie(double seuilToupieNew) {
+    seuilToupie = seuilToupieNew;
 }
 
 std::string Bougie::getForme() const {

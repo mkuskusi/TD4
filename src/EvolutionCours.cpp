@@ -60,6 +60,6 @@ unsigned int EvolutionCours::getNbCours() const {
 }
 
 CoursOHLC& EvolutionCours::getCoursAt(int index) const {
-    if(index < 0 || index > nbCours - 1) return nullptr;
+    if(index < 0 || index > nbCours - 1) throw  TradingException("out of array!");
     return cours[index];
 }

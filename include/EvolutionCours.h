@@ -10,6 +10,9 @@
 #include "CoursOHLC.h"
 #include "TradingException.h"
 
+/**
+ * @brief The class of
+ */
 class EvolutionCours {
     const PaireDevises & paireDevises;
     CoursOHLC *cours= nullptr;
@@ -36,7 +39,7 @@ class EvolutionCours {
            index++;
         }
         bool isDone(){
-            if(evolutionCours == nullptr || index == evolutionCours->getNbCours())
+            return (evolutionCours == nullptr || index == evolutionCours->getNbCours()) ;
         }
         CoursOHLC& current(){
             return evolutionCours->getCoursAt(index);

@@ -27,7 +27,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/lib)
 
 ######## find all the source files.
 file(GLOB HEADER_FILES include/*.h)
-file(GLOB SOURCE_FILES src/*.cpp src/main.cpp)
+file(GLOB SOURCE_FILES src/*.cpp)
 
 ######## Set executable file name, and add the source files for it.
 add_executable(TD4 ${HEADER_FILES} ${SOURCE_FILES})

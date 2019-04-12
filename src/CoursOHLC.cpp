@@ -33,5 +33,12 @@ std::ostream &operator<<(std::ostream &os, const CoursOHLC &ohlc) {
     return os;
 }
 
+void CoursOHLC::setCours(double openPrice, double highPrice, double lowPrice, double closePrice){
+    CoursOHLC::openPrice = openPrice;
+    CoursOHLC::highPrice = highPrice;
+    CoursOHLC::lowPrice = lowPrice;
+    CoursOHLC::closePrice = closePrice;
+}
+
 CoursOHLC::CoursOHLC() = default;
 
