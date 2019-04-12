@@ -65,14 +65,14 @@ CoursOHLC& EvolutionCoursII::getCoursAt(int index) const {
 }
 
 std::ostream &operator<<(std::ostream &os, EvolutionCoursII &i) {
-    for(EvolutionCoursII::Iterator it=i.begin();it!=i.end();++it){
+    for(EvolutionCoursII::IteratorII it=i.begin();it!=i.end();++it){
         os<<*it<<"\n";
     }
     return os;
 }
 
 std::ostream &operator<<(std::ostream &os, const EvolutionCoursII &i) {
-    for(EvolutionCoursII::ConstIterator it=i.begin();it!=i.end();++it){
+    for(EvolutionCoursII::ConstIteratorII it=i.begin();it!=i.end();++it){
         os<<*it<<"\n";
     }
     return os;
@@ -80,20 +80,20 @@ std::ostream &operator<<(std::ostream &os, const EvolutionCoursII &i) {
 
 
 
-bool EvolutionCoursII::Iterator::operator==(const EvolutionCoursII::Iterator &rhs) const {
+bool EvolutionCoursII::IteratorII::operator==(const EvolutionCoursII::IteratorII &rhs) const {
     return evolutionCours == rhs.evolutionCours &&
            index == rhs.index;
 }
 
-bool EvolutionCoursII::Iterator::operator!=(const EvolutionCoursII::Iterator &rhs) const {
+bool EvolutionCoursII::IteratorII::operator!=(const EvolutionCoursII::IteratorII &rhs) const {
     return !(rhs == *this);
 }
 
-bool EvolutionCoursII::ConstIterator::operator==(const EvolutionCoursII::ConstIterator &rhs) const {
+bool EvolutionCoursII::ConstIteratorII::operator==(const EvolutionCoursII::ConstIteratorII &rhs) const {
     return evolutionCours == rhs.evolutionCours &&
            index == rhs.index;
 }
 
-bool EvolutionCoursII::ConstIterator::operator!=(const EvolutionCoursII::ConstIterator &rhs) const {
+bool EvolutionCoursII::ConstIteratorII::operator!=(const EvolutionCoursII::ConstIteratorII &rhs) const {
     return !(rhs == *this);
 }

@@ -67,7 +67,7 @@ CoursOHLC& EvolutionCoursI::getCoursAt(int index) const {
 std::ostream &operator<<(std::ostream &os, EvolutionCoursI &i) {
     for(EvolutionCoursI::Iterator it= i.getIterator();!it.isDone();it.next()){
         os <<it.current()<<"\n";
-        //it.current().setCours(0,0,0,0); // modification possible
+        it.current().setCours(0,0,0,0); // modification possible
     }
     return os;
 }

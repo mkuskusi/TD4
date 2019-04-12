@@ -49,17 +49,15 @@ class EvolutionCoursIII {
         EvolutionCoursIII *evolution = nullptr;
         int i = 0;
         pente direction=pente::croissante;
-        SearchIterator(EvolutionCoursIII* e, pente p) :
+        SearchIterator(EvolutionCoursIII* e, pente p) : evolution(e),
                 direction(p) {
-            *this->evolution = *e;
             while (i < evolution->nbCours &&
                    ((direction == pente::croissante && evolution->cours[i].getClosePrice() < evolution
                            ->cours[i].getOpenPrice()) ||
                     (direction == pente::decroissante && evolution->cours[i].getClosePrice() > evolution
                             ->cours[i].getOpenPrice()))) i++;
+
         }
-
-
 
     public:
         SearchIterator()= default;
@@ -156,8 +154,8 @@ public:
      * @brief Get the iterator of table for courses.
      * @return the corresponding iterator.
      */
-    SearchIterator & getIterator(pente p) {
-        SearchIterator(this, p);
+    SearchIterator getIterator(pente p) {
+        return {this, p};
     }
 
     friend std::ostream &operator<<(std::ostream &os, EvolutionCoursIII &i);

@@ -33,7 +33,7 @@ class EvolutionCoursII {
     /**
      * @brief a nested class to support a design pattern in terms of iterator.
      */
-    class Iterator{
+    class IteratorII{
         /**
          * @brief a pre-declaration of friend class of EvolutionCoursI such that the class EvolutionCoursI can visit the private members of class Iterator.
          * to make the class Iterator as a dedicate nested class for EvolutionCoursI.
@@ -55,18 +55,14 @@ class EvolutionCoursII {
          * @param evolutionCours see class evolutionCoursI
          * @param j index of course.
          */
-        explicit Iterator(EvolutionCoursII *evolutionCours,  int j=0):index(j){
-            /**
-             * @brief here an assignment operator for class EvolutionCoursI will be called.
-             */
-            *this->evolutionCours = *evolutionCours;
+        explicit IteratorII(EvolutionCoursII *evolutionCours,  int j=0):evolutionCours(evolutionCours),index(j){
         }
         bool isDone() const{
             return evolutionCours == nullptr || index == evolutionCours->getNbCours();
         }
 
     public:
-        Iterator()= default;
+        IteratorII()= default;
         void operator++(){
             if(isDone()){
                 throw TradingException("out of array");
@@ -79,15 +75,15 @@ class EvolutionCoursII {
             return evolutionCours->getCoursAt(index);
         }
 
-        bool operator==(const Iterator &rhs) const;
+        bool operator==(const IteratorII &rhs) const;
 
-        bool operator!=(const Iterator &rhs) const;
+        bool operator!=(const IteratorII &rhs) const;
     };
 
     /**
      * @brief a nested class to support a design pattern in terms of iterator.
      */
-    class ConstIterator{
+    class ConstIteratorII{
         /**
          * @brief a pre-declaration of friend class of EvolutionCoursI such that the class EvolutionCoursI can visit the private members of class Iterator.
          * to make the class Iterator as a dedicate nested class for EvolutionCoursII.
@@ -97,7 +93,7 @@ class EvolutionCoursII {
         /**
          * @brief the instance of super carrier associated with the nested class.
          */
-        EvolutionCoursII *evolutionCours = nullptr;
+        const EvolutionCoursII *evolutionCours = nullptr;
         /**
          * @brief the index of current element.
          */
@@ -109,18 +105,13 @@ class EvolutionCoursII {
          * @param evolutionCours see class evolutionCoursI
          * @param j index of course.
          */
-        explicit ConstIterator(const EvolutionCoursII *evolutionCours,  int j=0):index(j){
-            /**
-             * @brief here an assignment operator for class EvolutionCoursII will be called.
-             */
-            *this->evolutionCours = *evolutionCours;
-        }
+        explicit ConstIteratorII(const EvolutionCoursII *evolutionCours,  int j=0): evolutionCours(evolutionCours),index(j){}
         bool isDone() const{
             return evolutionCours == nullptr || index == evolutionCours->getNbCours();
         }
 
     public:
-        ConstIterator()= default;
+        ConstIteratorII()= default;
         void operator++(){
             if(isDone()){
                 throw TradingException("out of array");
@@ -133,9 +124,9 @@ class EvolutionCoursII {
             return evolutionCours->getCoursAt(index);
         }
 
-        bool operator==(const ConstIterator &rhs) const;
+        bool operator==(const ConstIteratorII &rhs) const;
 
-        bool operator!=(const ConstIterator &rhs) const;
+        bool operator!=(const ConstIteratorII &rhs) const;
     };
 public:
     /**
@@ -202,19 +193,11 @@ public:
      */
     CoursOHLC& getCoursAt(int index) const;
 
-    /**
-     * @brief Get the iterator of table for courses.
-     * @return the corresponding iterator.
-     */
-    Iterator & getIterator() {
-        Iterator(this);
-    }
+    IteratorII begin() { return IteratorII(this); }
+    IteratorII end() { return IteratorII(this, nbCours); }
 
-    Iterator begin() { return Iterator(this); }
-    Iterator end() { return Iterator(this, nbCours); }
-
-    ConstIterator begin() const { return ConstIterator(this); }
-    ConstIterator end() const{ return ConstIterator(this, nbCours); }
+    ConstIteratorII begin() const { return ConstIteratorII(this); }
+    ConstIteratorII end() const{ return ConstIteratorII(this, nbCours); }
 
     friend std::ostream &operator<<(std::ostream &os, EvolutionCoursII &i);
 

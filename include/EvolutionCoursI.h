@@ -55,11 +55,7 @@ class EvolutionCoursI {
          * @brief Constructor with parameters.
          * @param evolutionCoursI see class evolutionCoursI
          */
-        explicit Iterator(EvolutionCoursI *evolutionCoursI){
-            /**
-             * @brief here an assignment operator for class EvolutionCoursI will be called.
-             */
-            *this->evolutionCours = *evolutionCoursI;
+        explicit Iterator(EvolutionCoursI *evolutionCoursI):evolutionCours(evolutionCoursI){
         }
     public:
         Iterator()= default;
@@ -69,10 +65,10 @@ class EvolutionCoursI {
            }
            index++;
         }
-        bool isDone(){
+        bool isDone() const{
             return evolutionCours == nullptr || index == evolutionCours->getNbCours();
         }
-        CoursOHLC& current(){
+        CoursOHLC& current() const{
             return evolutionCours->getCoursAt(index);
         }
     };
@@ -87,7 +83,7 @@ class EvolutionCoursI {
         /**
          * @brief the instance of super carrier associated with the nested class.
          */
-        EvolutionCoursI *evolutionCours = nullptr;
+        const EvolutionCoursI *evolutionCours = nullptr;
         /**
          * @brief the index of current element.
          */
@@ -98,11 +94,7 @@ class EvolutionCoursI {
          * @brief Constructor with parameters.
          * @param evolutionCoursI see class evolutionCoursI
          */
-        explicit ConstIterator(const EvolutionCoursI *evolutionCoursI){
-            /**
-             * @brief here an assignment operator for class EvolutionCoursI will be called.
-             */
-            *this->evolutionCours = *evolutionCoursI;
+        explicit ConstIterator(const EvolutionCoursI *evolutionCoursI): evolutionCours(evolutionCoursI){
         }
     public:
         ConstIterator()= default;
@@ -188,16 +180,16 @@ public:
      * @brief Get the iterator of table for courses.
      * @return the corresponding iterator.
      */
-    Iterator & getIterator() {
-        Iterator(this);
+    Iterator getIterator() {
+        return Iterator (this);
     }
 
     /**
      * @brief Get the iterator of table for courses.
      * @return the corresponding iterator.
      */
-    const ConstIterator & getIterator() const {
-        ConstIterator(this);
+    const ConstIterator getIterator() const {
+        return ConstIterator(this);
     }
 
     friend std::ostream &operator<<(std::ostream &os, EvolutionCoursI &i);
