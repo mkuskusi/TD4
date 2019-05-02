@@ -17,7 +17,7 @@ class Bougie {
     /**
      * @brief An object in terms of CoursOHLC.
      */
-    const CoursOHLC& cours;
+    CoursOHLC& cours;
     /**
      * @brief The color of a candle.
      */
@@ -34,13 +34,13 @@ public:
      * @param cours see CoursOHLC
      * attention, when there only one parameter, it is better to add explicit prefix to avoid implicit conversion.
      */
-    explicit Bougie(const CoursOHLC &cours);
+    explicit Bougie(CoursOHLC &cours);
 
     /**
      * @brief Getter for cours attribute.
      * @return the corresponding value of attribute cours.
      */
-    const CoursOHLC &getCours() const;
+    CoursOHLC &getCours() ;
 
     /**
      * @brief Getter for color of candle.

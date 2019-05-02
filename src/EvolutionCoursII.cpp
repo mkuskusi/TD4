@@ -2,6 +2,8 @@
 // Created by chenghaowang on 29/03/19.
 //
 
+#include <utility>
+
 #include "../include/EvolutionCoursII.h"
 
 EvolutionCoursII::EvolutionCoursII(const PaireDevises &paireDevises) : paireDevises(paireDevises) {}
@@ -26,7 +28,7 @@ EvolutionCoursII &EvolutionCoursII::operator=(const EvolutionCoursII &p) {
     return *this;
 }
 
-void EvolutionCoursII::addCours(double openPrice, double highPrice, double lowPrice, double closePrice) {
+void EvolutionCoursII::addCours(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime &dateTime) {
     if (nbCours == nbMaxCours) {
         auto * newtab = new CoursOHLC[nbMaxCours + 50];
         for (unsigned int i = 0; i < nbCours; i++)
@@ -36,7 +38,7 @@ void EvolutionCoursII::addCours(double openPrice, double highPrice, double lowPr
         cours = newtab;
         delete[] old;
     }
-    cours[nbCours++] = CoursOHLC(openPrice, highPrice, lowPrice, closePrice);
+    cours[nbCours++] = CoursOHLC(openPrice, highPrice, lowPrice, closePrice, dateTime);
 }
 
 EvolutionCoursII::~EvolutionCoursII() {

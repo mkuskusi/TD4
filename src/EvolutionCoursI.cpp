@@ -26,7 +26,7 @@ EvolutionCoursI &EvolutionCoursI::operator=(const EvolutionCoursI &p) {
     return *this;
 }
 
-void EvolutionCoursI::addCours(double openPrice, double highPrice, double lowPrice, double closePrice) {
+void EvolutionCoursI::addCours(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime & dateTime) {
     if (nbCours == nbMaxCours) {
         auto * newtab = new CoursOHLC[nbMaxCours + 50];
         for (unsigned int i = 0; i < nbCours; i++)
@@ -36,7 +36,7 @@ void EvolutionCoursI::addCours(double openPrice, double highPrice, double lowPri
         cours = newtab;
         delete[] old;
     }
-    cours[nbCours++] = CoursOHLC(openPrice, highPrice, lowPrice, closePrice);
+    cours[nbCours++] = CoursOHLC(openPrice, highPrice, lowPrice, closePrice, dateTime);
 }
 
 EvolutionCoursI::~EvolutionCoursI() {
@@ -67,7 +67,7 @@ CoursOHLC& EvolutionCoursI::getCoursAt(int index) const {
 std::ostream &operator<<(std::ostream &os, EvolutionCoursI &i) {
     for(EvolutionCoursI::Iterator it= i.getIterator();!it.isDone();it.next()){
         os <<it.current()<<"\n";
-        it.current().setCours(0,0,0,0); // modification possible
+        it.current().setCours(0,0,0,0, QDateTime(QDate(0, 0, 0), QTime(0, 0, 0))); // modification possible
     }
     return os;
 }

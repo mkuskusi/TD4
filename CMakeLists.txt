@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
+
 project(TD4)
 
 ######## Complier message
@@ -29,5 +30,25 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/lib)
 file(GLOB HEADER_FILES include/*.h)
 file(GLOB SOURCE_FILES src/*.cpp)
 
+######## set for qt environment
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed
+set(CMAKE_AUTOMOC ON)
+# Create code from a list of Qt designer ui files
+set(CMAKE_AUTOUIC ON)
+
+set(CMAKE_PREFIX_PATH $ENV{HOME}/Qt/5.12.2/gcc_64)
+
+
+find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets Charts)
+
+
 ######## Set executable file name, and add the source files for it.
 add_executable(TD4 ${HEADER_FILES} ${SOURCE_FILES})
+
+######## link the depenceies
+target_link_libraries(TD4
+        PUBLIC
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets Qt5::Charts)

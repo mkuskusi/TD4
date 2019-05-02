@@ -6,6 +6,8 @@
 #define TD4_COURSOHLC_H
 
 #include <iostream>
+#include <QtCore/QDateTime>
+
 /**
  * @brief The class of course recording information for candle in a trading simulator. which is composed of four parts: open price, close price, higher price and lower price.
  */
@@ -27,6 +29,8 @@ private:
      * @brief the close price, i.e. for a share.
      */
     double closePrice= 0.0;
+
+    QDateTime dataCreated;
 public:
 
     /**
@@ -43,7 +47,9 @@ public:
      * @param lowPrice
      * @param closePrice
      */
-    CoursOHLC(double openPrice, double highPrice, double lowPrice, double closePrice);
+    CoursOHLC(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime &dateTime);
+
+    void setCours(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime &dateTime);
 
     void setCours(double openPrice, double highPrice, double lowPrice, double closePrice);
 
@@ -70,6 +76,10 @@ public:
      * @return the corresponding value of attribute of close price.
      */
     double getClosePrice() const;
+
+    const QDateTime &getDataCreated() const;
+
+    void setDataCreated(const QDateTime &dataCreated);
 
     /**
      * @brief An override of output stream operator.

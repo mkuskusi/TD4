@@ -30,55 +30,7 @@ class EvolutionCoursII {
      * @brief the current number of cours in the table.
      */
     unsigned  int nbCours=0;
-    /**
-     * @brief a nested class to support a design pattern in terms of iterator.
-     */
-    class IteratorII{
-        /**
-         * @brief a pre-declaration of friend class of EvolutionCoursI such that the class EvolutionCoursI can visit the private members of class Iterator.
-         * to make the class Iterator as a dedicate nested class for EvolutionCoursI.
-         */
-        friend class EvolutionCoursII;
 
-        /**
-         * @brief the instance of super carrier associated with the nested class.
-         */
-        EvolutionCoursII *evolutionCours = nullptr;
-        /**
-         * @brief the index of current element.
-         */
-        int index=0;
-
-
-        /**
-         * @brief Constructor with parameters.
-         * @param evolutionCours see class evolutionCoursI
-         * @param j index of course.
-         */
-        explicit IteratorII(EvolutionCoursII *evolutionCours,  int j=0):evolutionCours(evolutionCours),index(j){
-        }
-        bool isDone() const{
-            return evolutionCours == nullptr || index == evolutionCours->getNbCours();
-        }
-
-    public:
-        IteratorII()= default;
-        void operator++(){
-            if(isDone()){
-                throw TradingException("out of array");
-            }
-            index++;
-        }
-        CoursOHLC& operator*() const {
-            if (isDone())
-                throw TradingException("error, indirection on an iterator which is done");
-            return evolutionCours->getCoursAt(index);
-        }
-
-        bool operator==(const IteratorII &rhs) const;
-
-        bool operator!=(const IteratorII &rhs) const;
-    };
 
     /**
      * @brief a nested class to support a design pattern in terms of iterator.
@@ -130,6 +82,56 @@ class EvolutionCoursII {
     };
 public:
     /**
+     * @brief a nested class to support a design pattern in terms of iterator.
+     */
+    class IteratorII{
+        /**
+         * @brief a pre-declaration of friend class of EvolutionCoursI such that the class EvolutionCoursI can visit the private members of class Iterator.
+         * to make the class Iterator as a dedicate nested class for EvolutionCoursI.
+         */
+        friend class EvolutionCoursII;
+
+        /**
+         * @brief the instance of super carrier associated with the nested class.
+         */
+        EvolutionCoursII *evolutionCours = nullptr;
+        /**
+         * @brief the index of current element.
+         */
+        int index=0;
+
+
+        /**
+         * @brief Constructor with parameters.
+         * @param evolutionCours see class evolutionCoursI
+         * @param j index of course.
+         */
+        explicit IteratorII(EvolutionCoursII *evolutionCours,  int j=0):evolutionCours(evolutionCours),index(j){
+        }
+        bool isDone() const{
+            return evolutionCours == nullptr || index == evolutionCours->getNbCours();
+        }
+
+    public:
+        IteratorII()= default;
+        void operator++(){
+            if(isDone()){
+                throw TradingException("out of array");
+            }
+            index++;
+        }
+        CoursOHLC& operator*() const {
+            if (isDone())
+                throw TradingException("error, indirection on an iterator which is done");
+            return evolutionCours->getCoursAt(index);
+        }
+
+        bool operator==(const IteratorII &rhs) const;
+
+        bool operator!=(const IteratorII &rhs) const;
+    };
+
+    /**
      * @brief Constructor with parameters.
      * @param paireDevises see class PaireDevises.
      */
@@ -155,7 +157,7 @@ public:
      * @param lowPrice the low price of a new course.
      * @param closePrice the close price of a new course.
      */
-    void addCours(double openPrice, double highPrice, double lowPrice, double closePrice);
+    void addCours(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime &dateTime);
 
     /**
      * @brief Destructor.
@@ -202,6 +204,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, EvolutionCoursII &i);
 
     friend std::ostream &operator<<(std::ostream &os, const EvolutionCoursII &i);
+
 
 };
 

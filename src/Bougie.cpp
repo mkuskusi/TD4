@@ -5,9 +5,9 @@
 #include "../include/Bougie.h"
 double Bougie::seuilToupie=1;
 
-Bougie::Bougie(const CoursOHLC &cours) : cours(cours) {}
+Bougie::Bougie(CoursOHLC &cours) : cours(cours) {}
 
-const CoursOHLC &Bougie::getCours() const {
+CoursOHLC &Bougie::getCours() {
     return cours;
 }
 

@@ -112,7 +112,7 @@ public:
      * @param lowPrice the low price of a new course.
      * @param closePrice the close price of a new course.
      */
-    void addCours(double openPrice, double highPrice, double lowPrice, double closePrice);
+    void addCours(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime &dateTime);
 
     /**
      * @brief Destructor.

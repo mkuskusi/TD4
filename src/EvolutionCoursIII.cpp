@@ -26,7 +26,7 @@ EvolutionCoursIII &EvolutionCoursIII::operator=(const EvolutionCoursIII &p) {
     return *this;
 }
 
-void EvolutionCoursIII::addCours(double openPrice, double highPrice, double lowPrice, double closePrice) {
+void EvolutionCoursIII::addCours(double openPrice, double highPrice, double lowPrice, double closePrice, const QDateTime &dateTime) {
     if (nbCours == nbMaxCours) {
         auto * newtab = new CoursOHLC[nbMaxCours + 50];
         for (unsigned int i = 0; i < nbCours; i++)
@@ -36,7 +36,7 @@ void EvolutionCoursIII::addCours(double openPrice, double highPrice, double lowP
         cours = newtab;
         delete[] old;
     }
-    cours[nbCours++] = CoursOHLC(openPrice, highPrice, lowPrice, closePrice);
+    cours[nbCours++] = CoursOHLC(openPrice, highPrice, lowPrice, closePrice, dateTime);
 }
 
 EvolutionCoursIII::~EvolutionCoursIII() {
